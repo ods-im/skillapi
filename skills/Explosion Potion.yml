@@ -1,0 +1,76 @@
+Explosion Potion:
+
+  name: 'Explosion Potion'
+  type: 'Projectile'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 22
+    mana-scale: -1
+    cooldown-base: 10
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'TNT'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Tosses a potion that explodes'
+  - '&7and deals damage to all'
+  - '&7nearby enemies.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Potion Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            type: 'Fire Resistance'
+            group: 'Enemy'
+          children:
+            Damage-c:
+              type: 'mechanic'
+              data:
+                value-scale: 2
+                icon-key: 'dmg'
+                value-base: 6
+                type: 'Damage'
+              children:  {}
+            Particle-d:
+              type: 'mechanic'
+              data:
+                visible-radius: 25
+                data: 0
+                forward: 0
+                radius-scale: 0
+                right: 0
+                radius-base: 0
+                amount-base: 1
+                speed: 1
+                arrangement: 'Circle'
+                dx: 0
+                dy: 0
+                dz: 0
+                icon-key: ''
+                amount-scale: 0
+                particle: 'Large Explode'
+                direction: 'XZ'
+                upward: 0
+              children:  {}

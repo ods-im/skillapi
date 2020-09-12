@@ -1,0 +1,66 @@
+Powerful Blow:
+
+  name: 'Powerful Blow'
+  type: 'Target'
+  max-level: 4
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Diamond Sword'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - 'Smashes the target,'
+  - 'dealing moderate damage'
+  - 'and knocks them backwards'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 4
+    cooldown-scale: 0
+    mana-base: 15
+    mana-scale: 0
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Single-b:
+          type: 'target'
+          data:
+            icon-key: ''
+            range-base: 2
+            range-scale: 0
+            tolerance: 4
+            group: 'Enemy'
+            wall: 'False'
+          children:
+            Damage-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 6
+                value-scale: 2
+            Push-d:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                speed-base: 2.5
+                speed-scale: 0

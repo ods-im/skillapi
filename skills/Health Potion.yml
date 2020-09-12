@@ -1,0 +1,71 @@
+Health Potion:
+
+  name: 'Health Potion'
+  type: 'Projectile'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 18
+    mana-scale: -1
+    cooldown-base: 12
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'GOLDEN_APPLE'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Heal Duration: {attr:heal.seconds}'
+  - '&2Bonus Duration: {attr:bonus:seconds}'
+  - ''
+  - '&7Launches a potion that'
+  - '&7heals allies over time'
+  - '&7and grants bonus health'
+  - '&7for a short time.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Potion Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            type: 'Regen'
+            group: 'Ally'
+          children:
+            Potion-c:
+              type: 'mechanic'
+              data:
+                potion: 'Regeneration'
+                icon-key: 'heal'
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 0.6
+                tier-base: 3
+                seconds-base: 3.6
+              children:  {}
+            Potion-d:
+              type: 'mechanic'
+              data:
+                potion: 'Health Boost'
+                icon-key: 'bonus'
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 2
+                tier-base: 1
+                seconds-base: 6
+              children:  {}

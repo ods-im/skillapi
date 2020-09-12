@@ -1,0 +1,89 @@
+Phantom strike:
+
+  name: 'Phantom strike'
+  type: 'Active'
+  max-level: 5
+  skill-req: 'Blink'
+  skill-req-lvl: 3
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'Coal Block'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - ''
+  - '&7Allows you to blink to your'
+  - '&7target, and apply &cWither&7 on'
+  - '&7them then jumps away from them!'
+  - ''
+  - '&cDuration: {attr:wither.Seconds}'
+  - '&cJump back: {attr:jb.forward} blocks'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 65
+    cooldown-scale: 0
+    mana-base: 25
+    mana-scale: 0
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Single-b:
+          type: 'target'
+          data:
+            icon-key: ''
+            range-base: 15
+            range-scale: 0
+            tolerance: 15
+            group: 'Enemy'
+            wall: 'False'
+          children:
+            Potion-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'wither'
+                counts: 'True'
+                potion: 'Wither'
+                ambient: 'True'
+                tier-base: 10
+                tier-scale: 0
+                seconds-base: 10
+                seconds-scale: 5
+            Warp Target-d:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                type: 'Caster to Target'
+            Delay-e:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                delay-base: 1.5
+                delay-scale: 0
+              children:
+                Warp-f:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'jb'
+                    counts: 'True'
+                    walls: 'False'
+                    forward-base: -10
+                    forward-scale: -5
+                    upward-base: 0
+                    upward-scale: 0
+                    right-base: 0
+                    right-scale: 0

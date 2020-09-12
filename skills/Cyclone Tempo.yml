@@ -1,0 +1,192 @@
+Cyclone Tempo:
+
+  name: 'Cyclone Tempo'
+  type: 'Skill Shot'
+  max-level: 4
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&7Cyclone Tempo Skill Cast! &3[&b-5 生活&3]'
+  icon: 'Stick'
+  icon-data: 0
+  icon-lore:
+  - '&c{name} &7({level}/{max})'
+  - '&7Type: &c{type}'
+  - ''
+  - '&7{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&7Energy: {attr:mana}'
+  - '&7Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 0
+    level-scale: 25
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 5
+    cooldown-scale: 0
+    mana-base: 5
+    mana-scale: 0
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Value Location-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'location'
+        Warp-c:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            walls: 'False'
+            forward-base: 5
+            forward-scale: 0
+            upward-base: 0
+            upward-scale: 0
+            right-base: 0
+            right-scale: 0
+        Delay-d:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            delay-base: 0.5
+            delay-scale: 0
+          children:
+            Potion-e:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                potion: 'Speed'
+                ambient: 'False'
+                tier-base: 2
+                tier-scale: 0
+                seconds-base: 1
+                seconds-scale: 0
+            Delay-f:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                delay-base: 1
+                delay-scale: 0
+              children:
+                Delay-g:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: 1
+                    delay-scale: 0
+                  children:
+                    Warp Value-h:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'location'
+                Potion-i:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'False'
+                    tier-base: 1
+                    tier-scale: 0
+                    seconds-base: 1
+                    seconds-scale: 0
+                Area-j:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                    radius-base: 3
+                    radius-scale: 0
+                    group: 'Enemy'
+                    wall: 'False'
+                    caster: 'False'
+                    max-base: 99
+                    max-scale: 0
+                  children:
+                    Push-k:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        speed-base: -3
+                        speed-scale: 0
+                    Damage-l:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 3
+                        value-scale: 10
+            Area-m:
+              type: 'target'
+              data:
+                icon-key: ''
+                radius-base: 3
+                radius-scale: 0
+                group: 'Enemy'
+                wall: 'False'
+                caster: 'False'
+                max-base: 99
+                max-scale: 0
+              children:
+                Damage-n:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 3
+                    value-scale: 10
+                Push-o:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    speed-base: -3
+                    speed-scale: 0
+        Particle Animation-p:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            steps: 1
+            frequency: 0.05
+            angle: 0
+            start: 0
+            duration-base: 3
+            duration-scale: 0
+            h-translation-base: 0
+            h-translation-scale: 0
+            v-translation-base: 0
+            v-translation-scale: 0
+            h-cycles: 1
+            v-cycles: 1
+            particle: 'Large Explode'
+            arrangement: 'Circle'
+            radius-base: 1
+            radius-scale: 0
+            amount-base: 3
+            amount-scale: 0
+            forward: 0
+            upward: 0.2
+            right: 0
+            direction: 'XZ'
+            data: 0
+            visible-radius: 25
+            dx: 0
+            dy: 0
+            dz: 0
+            speed: 1

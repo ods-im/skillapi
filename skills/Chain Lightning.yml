@@ -1,0 +1,88 @@
+Chain Lightning:
+
+  name: 'Chain Lightning'
+  type: 'AOE'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Torch'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Range: {attr:range.repetitions}'
+  - ''
+  - 'Strikes all enemies in a line'
+  - 'with lightning, dealing damage'
+  - 'while granting yourself lightning'
+  - 'immunity for 3 seconds.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 12
+    cooldown-scale: -1
+    mana-base: 25
+    mana-scale: -2
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Value Set-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'lightningOffset'
+            value-base: 2
+            value-scale: 0
+        Offset-c:
+          type: 'target'
+          data:
+            icon-key: ''
+            forward-base: 0
+            forward-scale: 0
+            upward-base: 0
+            upward-scale: 0
+            right-base: 0
+            right-scale: 0
+          children:
+            Repeat-d:
+              type: 'mechanic'
+              data:
+                icon-key: 'range'
+                counts: 'True'
+                repetitions-base: 4
+                repetitions-scale: 1
+                period: 1
+                delay: 0
+              children:
+                Value Add-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'lightningOffset'
+                    amount-base: 1
+                    amount-scale: 0
+                Lightning-f:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    forward-base: lightningOffset
+                    forward-scale: 0
+                    right-base: 0
+                    right-scale: 0

@@ -1,0 +1,76 @@
+Potion of Sickness:
+
+  name: 'Potion of Sickness'
+  type: 'Projectile'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 18
+    mana-scale: -1
+    cooldown-base: 10
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'ROTTEN_FLESH'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Launches a diseased bottle'
+  - '&7that deals damage each'
+  - '&7second for 4 seconds and'
+  - '&7makes enemies nauseous.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Potion Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            type: 'Poison'
+            group: 'Enemy'
+          children:
+            Potion-c:
+              type: 'mechanic'
+              data:
+                potion: 'Confusion'
+                icon-key: ''
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 0.5
+                tier-base: 1
+                seconds-base: 3
+              children:  {}
+            Repeat-d:
+              type: 'mechanic'
+              data:
+                period: 1
+                delay: 0
+                repetitions-base: 4
+                icon-key: ''
+                repetitions-scale: 0
+              children:
+                Damage-e:
+                  type: 'mechanic'
+                  data:
+                    value-scale: 0.5
+                    icon-key: 'dmg'
+                    value-base: 1.5
+                    type: 'Damage'
+                  children:  {}

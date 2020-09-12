@@ -1,0 +1,73 @@
+Toughness:
+
+  name: 'Toughness'
+  type: 'Passive'
+  max-level: 4
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Iron Chestplate'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Reduction: {attr:red.value}'
+  - ''
+  - 'Reduces any damage taken'
+  - 'from others passively.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 0
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+  components:
+    Initialize-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 1
+            seconds-scale: 0
+          children:
+            Defense Buff-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                value-base: 0.8
+                value-scale: -0.05
+                seconds-base: 1
+                seconds-scale: 0
+        Flag-d:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Set'
+            key: 'false'
+          children:
+            Damage-e:
+              type: 'mechanic'
+              data:
+                icon-key: 'red'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 20
+                value-scale: 5

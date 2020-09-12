@@ -1,0 +1,99 @@
+Racket:
+
+  name: 'Racket'
+  type: 'Projectile'
+  max-level: 5
+  skill-req: 'None'
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 15
+    mana-scale: 0
+    cooldown-base: 120
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'FIREWORK'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Plays an awful note that'
+  - '&7damages the first enemy'
+  - '&7to be hit by the full'
+  - '&7force. Poor soul...'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Particle Projectile-b:
+          type: 'mechanic'
+          data:
+            visible-radius: 25
+            height-scale: 0
+            data: 0
+            counts: 'True'
+            lifespan: 5
+            radius-scale: 0
+            radius-base: 2
+            amount-base: 1
+            speed: 1
+            frequency: 0
+            spread: 'Cone'
+            angle-scale: 0
+            dx: 0
+            dy: 0
+            dz: 0
+            velocity-base: 3
+            height-base: 8
+            icon-key: ''
+            amount-scale: 0
+            particle: 'Note'
+            angle-base: 30
+            velocity-scale: 0
+          children:
+            Damage-c:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: 1
+                icon-key: 'dmg'
+                value-base: 5
+                type: 'Damage'
+              children:  {}
+        Particle-d:
+          type: 'mechanic'
+          data:
+            visible-radius: 25
+            data: 0
+            forward: 0
+            counts: 'True'
+            radius-scale: 0
+            right: 0
+            radius-base: 3
+            amount-base: 120
+            speed: 1
+            arrangement: 'Sphere'
+            dx: 0
+            dy: 0
+            dz: 0
+            icon-key: ''
+            amount-scale: 0
+            particle: 'Note'
+            direction: 'XZ'
+            upward: 0
+          children:  {}

@@ -1,0 +1,69 @@
+Gooey Adhesive:
+
+  name: 'Gooey Adhesive'
+  type: 'Utility Projectile'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 16
+    mana-scale: -2
+    cooldown-base: 10
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'OBSIDIAN'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Duration: {attr:slow.seconds}'
+  - ''
+  - '&7Launches a bottle of'
+  - '&7sludge that slows and'
+  - '&7blinds affected enemies.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Potion Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            type: 'Regen'
+            group: 'Enemy'
+          children:
+            Potion-c:
+              type: 'mechanic'
+              data:
+                potion: 'Slow'
+                icon-key: 'slow'
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 0.5
+                tier-base: 2
+                seconds-base: 1
+              children:  {}
+            Potion-d:
+              type: 'mechanic'
+              data:
+                potion: 'Blindness'
+                icon-key: ''
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 0.5
+                tier-base: 1
+                seconds-base: 1
+              children:  {}

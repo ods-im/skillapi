@@ -1,0 +1,85 @@
+Heal:
+
+  name: 'Heal'
+  type: 'Cone Heal'
+  max-level: 1
+  skill-req: 'Fire Arrow'
+  skill-req-lvl: 2
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 25
+    mana-scale: 0
+    cooldown-base: 10
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'GOLDEN_APPLE'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Health: {attr:heal.value}'
+  - ''
+  - '&7Heals yourself and allies'
+  - '&7within a cone in front of you.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Cone-b:
+          type: 'target'
+          data:
+            max-base: 99
+            angle-scale: 0
+            caster: 'True'
+            range-scale: 0.25
+            range-base: 3
+            icon-key: ''
+            angle-base: 90
+            wall: 'True'
+            max-scale: 0
+            group: 'Ally'
+          children:
+            Heal-c:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: 1
+                icon-key: 'heal'
+                value-base: 6
+                type: 'Health'
+              children:  {}
+            Particle-d:
+              type: 'mechanic'
+              data:
+                visible-radius: 25
+                data: 0
+                forward: 0
+                counts: 'True'
+                radius-scale: 0
+                right: 0
+                radius-base: 1
+                amount-base: 20
+                speed: 1
+                arrangement: 'Hemisphere'
+                dx: 0
+                dy: 0
+                dz: 0
+                icon-key: ''
+                amount-scale: 0
+                particle: 'Wolf Hearts'
+                direction: 'XZ'
+                upward: 0
+              children:  {}

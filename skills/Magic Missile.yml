@@ -1,0 +1,74 @@
+Magic Missile:
+
+  name: 'Magic Missile'
+  type: 'Projectile'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Snow Ball'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - ''
+  - 'Fires a small missile'
+  - 'that deals minor damage'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 1
+    cooldown-scale: -0.1
+    mana-base: 7
+    mana-scale: -1
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Particle Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            group: 'Enemy'
+            spread: 'Cone'
+            particle: 'Spell'
+            arrangement: 'Sphere'
+            radius-base: 0.25
+            radius-scale: 0
+            particles-base: 1
+            particles-scale: 0
+            visible-radius: 25
+            dx: 0
+            dy: 0
+            dz: 0
+            speed: 1
+            frequency: 0.05
+            velocity-base: 3
+            velocity-scale: 0
+            amount-base: 1
+            amount-scale: 0
+            lifespan: 3
+            angle-base: 0
+            angle-scale: 0
+          children:
+            Damage-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                type: 'Damage'
+                value-base: 6
+                value-scale: 1

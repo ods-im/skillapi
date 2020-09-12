@@ -1,0 +1,163 @@
+Backstab:
+
+  name: 'Backstab'
+  type: 'none'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Shears'
+  icon-data: 0
+  icon-lore:
+  - '&e{name} &b({level}/{max})'
+  - '&e------------------------------'
+  - '&e{req:level}Level: {attr:level}'
+  - '&e{req:cost}Cost: {attr:cost}'
+  - '&e------------------------------'
+  - '&eMana: {attr:mana} &e/ backstab'
+  - '&eCooldown: {attr:cooldown}'
+  - '&e------------------------------'
+  - '&eDetail: increase damage when you hit from behind'
+  - '&efor {attr:dmg.value}&ex weapon damage'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 5
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+  components:
+    Physical Damage-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Melee'
+        dmg-min: 1
+        dmg-max: 9999
+      children:
+        Flag-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Set'
+            key: 'backstab'
+          children:
+            Mana-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'Mana'
+                min-value-base: 5
+                min-value-scale: 0
+                max-value-base: 9999
+                max-value-scale: 0
+              children:
+                Single-d:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                    range-base: 6
+                    range-scale: 0
+                    tolerance-base: 4
+                    tolerance-scale: 0
+                    group: 'Enemy'
+                    wall: 'True'
+                  children:
+                    Direction-e:
+                      type: 'condition'
+                      data:
+                        icon-key: ''
+                        type: 'Target'
+                        direction: 'Away'
+                      children:
+                        Self-f:
+                          type: 'target'
+                          data:
+                            icon-key: ''
+                          children:
+                            Damage Buff-g:
+                              type: 'mechanic'
+                              data:
+                                icon-key: 'dmg'
+                                counts: 'True'
+                                type: 'Multiplier'
+                                skill: 'False'
+                                value-base: 1.1
+                                value-scale: 0.1
+                                seconds-base: 0.1
+                                seconds-scale: 0
+                            Mana-h:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: -5
+                                value-scale: 0
+                            Message-i:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                message: 'Backstab!'
+                    Message-j:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        message: 'you are Backstabed!'
+            Mana-k:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'Mana'
+                min-value-base: 0
+                min-value-scale: 0
+                max-value-base: 5
+                max-value-scale: 0
+              children:
+                Self-l:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                  children:
+                    Damage Buff-m:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: 1
+                        value-scale: 0
+                        seconds-base: 0.1
+                        seconds-scale: 0
+    Cast-n:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-o:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Flag Toggle-p:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'backstab'
+            Message-q:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                message: 'you toggled  the skill'

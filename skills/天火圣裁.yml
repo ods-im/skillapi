@@ -1,0 +1,156 @@
+天火圣裁:
+
+  name: '天火圣裁'
+  type: '主动技能'
+  max-level: 10
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2释放了&6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Blaze Powder'
+  icon-data: 2
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2类型: &6{type}'
+  - ''
+  - '{req:level}等级: {attr:level}'
+  - '{req:cost}技能点消耗: {attr:cost}'
+  - ''
+  - '&2法力值消耗: {attr:mana}'
+  - '&2冷却时间: {attr:cooldown}'
+  - '&2攻击距离: {attr:Location.range}'
+  - '&2爆炸范围: {attr:Area.Radius}'
+  - '&7&l&m                            '
+  - '&2瞄准目标,在目标上方'
+  - '&2召唤一个下落的火球'
+  - '&2造成爆炸并伤害敌人'
+  - ''
+  - ''
+  - 'by.冰星,小石头'
+  attributes:
+    level-base: 30
+    level-scale: 10
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 10
+    cooldown-scale: 0
+    mana-base: 50
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Item-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            check-mat: 'False'
+            check-data: 'False'
+            check-lore: 'True'
+            lore: '类型: 法杖'
+            check-name: 'False'
+            regex: 'False'
+          children:
+            Location-c:
+              type: 'target'
+              data:
+                icon-key: 'Location'
+                range-base: 8
+                range-scale: 0.5
+                ground: 'False'
+              children:
+                Particle-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Barrier'
+                    arrangement: 'Circle'
+                    radius-base: 0.1
+                    radius-scale: 0
+                    particles-base: 1
+                    particles-scale: 0
+                    direction: 'XZ'
+                    forward: 0
+                    upward: 0
+                    right: 0
+                Particle Animation-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    steps: 1
+                    frequency: 0.05
+                    angle: 0
+                    start: 0
+                    duration-base: 5
+                    duration-scale: 0
+                    h-translation-base: 0
+                    h-translation-scale: 0
+                    v-translation-base: -10
+                    v-translation-scale: 0
+                    h-cycles: 1
+                    v-cycles: 2
+                    particle: 'Lava'
+                    arrangement: 'Sphere'
+                    radius-base: 0.01
+                    radius-scale: 0
+                    particles-base: 20
+                    particles-scale: 0
+                    visible-radius: 50
+                    dx: 0
+                    dy: 0
+                    dz: 0
+                    speed: 1
+                    amount: 1
+                    forward: 0
+                    upward: 10
+                    right: 0
+                Delay-f:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: 3
+                    delay-scale: 0
+                  children:
+                    Explosion-g:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        power-base: 3
+                        power-scale: 0
+                        damage: 'False'
+                        fire: 'False'
+                    Area-h:
+                      type: 'target'
+                      data:
+                        icon-key: 'Area'
+                        radius-base: 3
+                        radius-scale: 0.25
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: 99
+                        max-scale: 0
+                        random: 'False'
+                      children:
+                        Damage-i:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 30
+                            value-scale: 1
+                            true: 'False'
+                            classifier: 'default'

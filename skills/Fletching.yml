@@ -1,0 +1,51 @@
+Fletching:
+
+  name: 'Fletching'
+  type: 'Summon'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'Flint'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - ''
+  - '&7Creates 2 arrows '
+  - '&7out of the nearby'
+  - '&7materials lying around.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 15
+    cooldown-scale: -3
+    mana-base: 20
+    mana-scale: -4
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Item-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            material: 'Arrow'
+            amount: 2
+            data: 0
+            custom: 'False'
+            name: 'Name'
+            lore:
+            - ''

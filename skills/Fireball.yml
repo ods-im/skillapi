@@ -1,0 +1,78 @@
+Fireball:
+
+  name: 'Fireball'
+  type: 'Dynamic'
+  max-level: 20
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: 'LS'
+  indicator: ''
+  icon: 'Fire Charge'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 2
+    cooldown-scale: 0
+    mana-base: 6
+    mana-scale: 0.5
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Slot-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            slot:
+            - '9'
+            check-mat: 'True'
+            material: 'Fire Charge'
+            check-data: 'False'
+            check-lore: 'False'
+            check-name: 'False'
+            regex: 'False'
+          children:
+            Projectile-c:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                projectile: 'Ghast Fireball'
+                flaming: 'True'
+                cost: ''
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: 1
+                amount-scale: 0
+                velocity-base: 3
+                velocity-scale: 0
+                angle-base: 30
+                angle-scale: 0
+                position: 0
+                forward-base: 0
+                forward-scale: 0
+                upward-base: 0
+                upward-scale: 0
+                right-base: 0
+                right-scale: 0
+                use-effect: 'False'

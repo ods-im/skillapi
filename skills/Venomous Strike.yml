@@ -1,0 +1,73 @@
+Venomous Strike:
+
+  name: Venomous Strike
+  type: Target
+  max-level: 5
+  skill-req-lvl: 0
+  needs-permission: false
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: SPIDER_EYE
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Range: {attr:target.range}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Strikes a target enemy,'
+  - '&7dealing damage and '
+  - '&7applying a poison for'
+  - '&75 seconds.'
+  desc: []
+  components:
+    Cast:
+      type: trigger
+      data:
+        icon-key: ''
+      children:
+        Single-b:
+          type: target
+          data:
+            range-scale: 0.25
+            range-base: 2
+            icon-key: target
+            wall: 'True'
+            tolerance: 4
+            group: Enemy
+          children:
+            Damage-c:
+              type: mechanic
+              data:
+                counts: 'True'
+                value-scale: 1
+                icon-key: dmg
+                value-base: 3
+                type: Damage
+              children: {}
+            Potion-d:
+              type: mechanic
+              data:
+                potion: Poison
+                counts: 'True'
+                icon-key: ''
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 0
+                tier-base: 2
+                seconds-base: 5
+              children: {}

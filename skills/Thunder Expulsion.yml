@@ -1,0 +1,187 @@
+Thunder Expulsion:
+
+  name: 'Thunder Expulsion'
+  type: 'AOE'
+  max-level: 2
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: 1
+    cooldown-scale: -1
+    cost-scale: 0
+    level-scale: 2
+    level-base: 24
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 16
+  msg: '&7{player} has cast &e{skill}'
+  icon: 'GLOWSTONE_DUST'
+  icon-data: 0
+  icon-lore:
+  - '&e{name} &7({level}/{max})'
+  - '&7Type: {type}'
+  - ''
+  - '&7{req:level}Level: {attr:level}'
+  - '&7{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&3Mana: {attr:mana}'
+  - '&7Cooldown: {attr:cooldown}'
+  - '&7Repetitions: {attr:dmg.repetitions}'
+  - ''
+  - '&7Lightning surges out of you'
+  - '&7in and AOE to damage enemies'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Immunity-c:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                type: 'Lightning'
+                seconds-scale: 0
+                seconds-base: 5
+              children:  {}
+            Repeat-d:
+              type: 'mechanic'
+              data:
+                period: 0.333
+                delay: 0
+                repetitions-base: 15
+                counts: 'True'
+                icon-key: 'dmg'
+                repetitions-scale: 1
+              children:
+                Value Add-e:
+                  type: 'mechanic'
+                  data:
+                    counts: 'True'
+                    icon-key: ''
+                    amount-scale: 0
+                    amount-base: 1
+                    key: 'L1'
+                  children:  {}
+                Value Add-f:
+                  type: 'mechanic'
+                  data:
+                    counts: 'True'
+                    icon-key: ''
+                    amount-scale: 0
+                    amount-base: -1
+                    key: 'L2'
+                  children:  {}
+                Lightning-g:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 'L1'
+                    right-base: 'L1'
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-h:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 'L1'
+                    right-base: 'L2'
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-i:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 'L2'
+                    right-base: 'L2'
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-j:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 'L2'
+                    right-base: 'L1'
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-k:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 'L1'
+                    right-base: 0
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-l:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 0
+                    right-base: 'L1'
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-m:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 'L2'
+                    right-base: 0
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+                Lightning-n:
+                  type: 'mechanic'
+                  data:
+                    right-scale: 0
+                    forward-base: 0
+                    right-base: 'L2'
+                    forward-scale: 0
+                    counts: 'True'
+                    icon-key: ''
+                  children:  {}
+        Delay-o:
+          type: 'mechanic'
+          data:
+            counts: 'True'
+            delay-base: 9
+            icon-key: ''
+            delay-scale: 0
+          children:
+            Value Set-p:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: 0
+                icon-key: ''
+                value-base: 0
+                key: 'L1'
+              children:  {}
+            Value Set-q:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: 0
+                icon-key: ''
+                value-base: 0
+                key: 'L2'
+              children:  {}

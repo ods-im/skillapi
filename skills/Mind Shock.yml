@@ -1,0 +1,99 @@
+Mind Shock:
+
+  name: 'Mind Shock'
+  type: 'AOE'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Book'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - '&2Range: {attr:target.range}'
+  - '&2Radius: {attr:area.radius}'
+  - ''
+  - 'Shocks the area around'
+  - 'the target, dealing damage'
+  - 'over 5 seconds to all'
+  - 'enemies affected.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 12
+    cooldown-scale: -1
+    mana-base: 20
+    mana-scale: -1
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Single-b:
+          type: 'target'
+          data:
+            icon-key: 'target'
+            range-base: 4
+            range-scale: 1
+            tolerance: 4
+            group: 'Enemy'
+            wall: 'False'
+          children:
+            Area-c:
+              type: 'target'
+              data:
+                icon-key: 'area'
+                radius-base: 2
+                radius-scale: 0.25
+                group: 'Enemy'
+                wall: 'False'
+                caster: 'False'
+                max-base: 99
+                max-scale: 0
+              children:
+                Repeat-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: 5
+                    repetitions-scale: 0
+                    period: 1
+                    delay: 0
+                  children:
+                    Damage-e:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 1
+                        value-scale: 0.2
+        Flag-f:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Set'
+            key: 'false'
+          children:
+            Damage-g:
+              type: 'mechanic'
+              data:
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 5
+                value-scale: 1

@@ -1,0 +1,80 @@
+Berserk:
+
+  name: 'Berserk'
+  type: 'Passive'
+  max-level: 3
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Apple'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - ''
+  - 'When your health gets'
+  - 'low, you go berserk,'
+  - 'gaining damage and'
+  - 'movement speed.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 0
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+  components:
+    Initialize-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 1
+            seconds-scale: 0
+          children:
+            Health-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: 0
+                min-value-scale: 0
+                max-value-base: 25
+                max-value-scale: 5
+              children:
+                Damage Buff-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    value-base: 1.15
+                    value-scale: 0.05
+                    seconds-base: 1
+                    seconds-scale: 0
+                Potion-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Speed'
+                    ambient: 'True'
+                    tier-base: 2
+                    tier-scale: 0
+                    seconds-base: 2
+                    seconds-scale: 0

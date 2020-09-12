@@ -1,0 +1,131 @@
+绝境一击:
+
+  name: '绝境一击'
+  type: '主动技能'
+  max-level: 1
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Jack O Lantern'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 0
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Health-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'Health'
+                min-value-base: 0
+                min-value-scale: 0
+                max-value-base: 10
+                max-value-scale: 2
+              children:
+                Single-d:
+                  type: 'target'
+                  data:
+                    icon-key: ''
+                    range-base: 5
+                    range-scale: 0
+                    tolerance-base: 4
+                    tolerance-scale: 0
+                    group: 'Enemy'
+                    wall: 'False'
+                  children:
+                    Damage-e:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: 1
+                        value-scale: 0
+                        true: 'False'
+                        classifier: 'default'
+                    Delay-f:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: 0.5
+                        delay-scale: 0
+                      children:
+                        Damage-g:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: 5
+                            value-scale: 0
+                            true: 'False'
+                            classifier: 'default'
+                        Delay-h:
+                          type: 'mechanic'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: 0.5
+                            delay-scale: 0
+                          children:
+                            Damage-i:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: 10
+                                value-scale: 0
+                                true: 'False'
+                                classifier: 'default'
+                            Delay-j:
+                              type: 'mechanic'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: 0.5
+                                delay-scale: 0
+                              children:
+                                Damage-k:
+                                  type: 'mechanic'
+                                  data:
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Damage'
+                                    value-base: 20
+                                    value-scale: 0
+                                    true: 'False'
+                                    classifier: 'default'

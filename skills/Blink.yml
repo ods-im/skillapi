@@ -1,0 +1,54 @@
+Blink:
+
+  name: 'Blink'
+  type: 'Utility'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Ender Pearl'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Distance: {attr:warp.forward}'
+  - ''
+  - 'Teleports yourself a'
+  - 'short distance forward'
+  - 'using the power of the'
+  - 'ender pearls.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 8
+    cooldown-scale: -1
+    mana-base: 18
+    mana-scale: -2
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Warp-b:
+          type: 'mechanic'
+          data:
+            icon-key: 'warp'
+            counts: 'True'
+            walls: 'False'
+            forward-base: 4
+            forward-scale: 0.5
+            upward-base: 0
+            upward-scale: 0
+            right-base: 0
+            right-scale: 0

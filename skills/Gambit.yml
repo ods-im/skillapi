@@ -1,0 +1,227 @@
+Gambit:
+
+  name: 'Gambit'
+  type: 'Buff'
+  max-level: 5
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '16'
+    cooldown-scale: '-2'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible:
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'DIAMOND_SWORD'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Cooldown: {attr:cooldown} seconds'
+  - '&2Multiplier: {attr:dmg.value}x'
+  - ''
+  - 'Gather insurmountable strength'
+  - 'into your next strike, exploding'
+  - 'in massive damage while also'
+  - 'severely damaging yourself.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      indicator: '3D'
+      data:
+        icon-key: ''
+        indicator: '2D'
+      children:
+        Particle Effect-n:
+          type: 'mechanic'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            counts: 'True'
+            effect-key: 'gambit'
+            duration-base: '1'
+            duration-scale: '0'
+            -shape: 'two-point'
+            -shape-dir: 'XZ'
+            -shape-size: '1'
+            -animation: 'one-circle'
+            -anim-dir: 'XZ'
+            -anim-size: '0'
+            -interval: '1'
+            -view-range: '25'
+            -particle-type: 'VILLAGER_ANGRY'
+            -particle-amount: '0'
+            -particle-dx: '0'
+            -particle-dy: '0'
+            -particle-dz: '0'
+            -particle-speed: '1'
+            indicator: '2D'
+          children:  {}
+        Flag-o:
+          type: 'mechanic'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'gambit'
+            seconds-base: '5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Damage Buff-p:
+          type: 'mechanic'
+          indicator: '3D'
+          data:
+            icon-key: 'dmg'
+            counts: 'True'
+            type: 'Multiplier'
+            skill: 'False'
+            value-base: '10'
+            value-scale: '5'
+            seconds-base: '5'
+            seconds-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Physical Damage:
+      type: 'trigger'
+      indicator: '3D'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999'
+        indicator: '2D'
+      children:
+        Remember Targets-b:
+          type: 'mechanic'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            counts: 'True'
+            key: 'target'
+            indicator: '2D'
+          children:  {}
+        Self-c:
+          type: 'target'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            indicator: '2D'
+          children:
+            Flag-d:
+              type: 'condition'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                type: 'Set'
+                key: 'gambit'
+                indicator: '2D'
+              children:
+                Flag Clear-e:
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'gambit'
+                    indicator: '2D'
+                  children:  {}
+                Health Set-f:
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    health-base: '1'
+                    health-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Damage Buff-g:
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '1'
+                    value-scale: '0'
+                    seconds-base: '1'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-h:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    radius-base: '5'
+                    radius-scale: '0'
+                    group: 'Ally'
+                    wall: 'True'
+                    caster: 'True'
+                    max-base: '99'
+                    max-scale: '0'
+                    indicator: '2D'
+                  children:
+                    Immunity-i:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Block Explosion'
+                        seconds-base: '2'
+                        seconds-scale: '0'
+                        multiplier-base: '0'
+                        multiplier-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Remember-j:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    key: 'target'
+                    indicator: '2D'
+                  children:
+                    Immunity-k:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Block Explosion'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        multiplier-base: '0'
+                        multiplier-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Explosion-l:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        power-base: '5'
+                        power-scale: '0'
+                        damage: 'False'
+                        fire: 'False'
+                        indicator: '2D'
+                      children:  {}

@@ -1,0 +1,97 @@
+Backstab:
+
+  name: 'Backstab'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: 0
+    cooldown-scale: 0
+    cost-scale: 0
+    level-scale: 5
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'WOOD_SPADE'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - '&fWhile using a sword, your'
+  - '&fdamage when attacking from'
+  - '&fbehind is increased by {attr:backstab.value}&f%.'
+  desc:  []
+  components:
+    Physical Damage:
+      type: 'trigger'
+      data:
+        dmg-min: 2
+        dmg-max: 999
+        icon-key: ''
+        type: 'Melee'
+        target: 'True'
+      children:
+        Tool-b:
+          type: 'condition'
+          data:
+            material: 'Any'
+            icon-key: ''
+            tool: 'Sword'
+          children:
+            Single-c:
+              type: 'target'
+              data:
+                range-scale: 0
+                range-base: 3
+                icon-key: ''
+                wall: 'False'
+                tolerance: 4
+                group: 'Enemy'
+              children:
+                Direction-d:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    type: 'Target'
+                    direction: 'Away'
+                  children:
+                    Self-e:
+                      type: 'target'
+                      data:
+                        icon-key: ''
+                      children:
+                        Damage Buff-f:
+                          type: 'mechanic'
+                          data:
+                            counts: 'True'
+                            value-scale: 0
+                            icon-key: 'backstab'
+                            type: 'Multiplier'
+                            value-base: 1.5
+                            seconds-scale: 0
+                            seconds-base: 1
+                          children:  {}
+                        Value Lore-g:
+                          type: 'mechanic'
+                          data:
+                            regex: 'Backstab Damage: {value}'
+                            multiplier-base: 1
+                            counts: 'True'
+                            icon-key: ''
+                            multiplier-scale: 0
+                            key: 'backstabBonus'
+                          children:  {}
+                        Damage Buff-h:
+                          type: 'mechanic'
+                          data:
+                            counts: 'True'
+                            value-scale: 0
+                            icon-key: ''
+                            type: 'Flat'
+                            value-base: 'backstabBonus'
+                            seconds-scale: 0
+                            seconds-base: 1
+                          children:  {}

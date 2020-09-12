@@ -1,0 +1,118 @@
+Aegis Shield:
+
+  name: 'Aegis Shield'
+  type: 'none'
+  max-level: 10
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Diamond Chestplate'
+  icon-data: 0
+  icon-lore:
+  - '&e{name} &b({level}/{max})'
+  - '&e------------------------------'
+  - '&e{req:level}Level: {attr:level}'
+  - '&e{req:cost}Cost: {attr:cost}'
+  - '&e------------------------------'
+  - '&eMana: {attr:mana}'
+  - '&eCooldown: {attr:cooldown}'
+  - '&e------------------------------'
+  - '&eDetail: when you took non skill damage'
+  - '&eand face to face with your enemy'
+  - '&eyou will cast the skill.'
+  - '&ereduce damage by {attr:def.value} &ex'
+  - '&efor {attr:def.seconds}&e sec'
+  - '&eincrease skill damage taken by'
+  - '{attr:skill.value}&ex'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 10
+    cooldown-scale: 0
+    mana-base: 2
+    mana-scale: 2
+  components:
+    Took Skill Damage-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: 0
+        dmg-max: 9999
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Defense Buff-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'skill'
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: 1.1
+                value-scale: 0.1
+                seconds-base: 1
+                seconds-scale: 0
+    Took Physical Damage-d:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: 0
+        dmg-max: 9999
+      children:
+        Direction-e:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Target'
+            direction: 'Towards'
+          children:
+            Self-f:
+              type: 'target'
+              data:
+                icon-key: ''
+              children:
+                Defense Buff-g:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'def'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: 0.95
+                    value-scale: -0.05
+                    seconds-base: 1
+                    seconds-scale: 0
+                Particle-h:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Spell'
+                    arrangement: 'Hemisphere'
+                    radius-base: 1
+                    radius-scale: 0
+                    particles-base: 20
+                    particles-scale: 0
+                    visible-radius: 25
+                    dx: 0
+                    dy: 0
+                    dz: 0
+                    speed: 1
+                    amount: 1
+                    forward: 0
+                    upward: 0
+                    right: 0

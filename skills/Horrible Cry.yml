@@ -1,0 +1,78 @@
+Horrible Cry:
+
+  name: 'Horrible Cry'
+  type: 'AOE Utility'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 28
+    mana-scale: -1
+    cooldown-base: 14
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'GHAST_TEAR'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Stuns all nearby enemies'
+  - '&7while dealing a small'
+  - '&7amount of damage per'
+  - '&7second for 4 seconds.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Area-b:
+          type: 'target'
+          data:
+            max-base: 99
+            caster: 'False'
+            radius-scale: 0.5
+            icon-key: ''
+            radius-base: 3
+            wall: 'True'
+            max-scale: 0
+            group: 'Enemy'
+          children:
+            Repeat-c:
+              type: 'mechanic'
+              data:
+                period: 1
+                delay: 0
+                repetitions-base: 4
+                icon-key: ''
+                repetitions-scale: 0
+              children:
+                Damage-d:
+                  type: 'mechanic'
+                  data:
+                    value-scale: 0.25
+                    icon-key: 'dmg'
+                    value-base: 1
+                    type: 'Damage'
+                  children:  {}
+            Status-e:
+              type: 'mechanic'
+              data:
+                duration-base: 1
+                icon-key: ''
+                duration-scale: 0.1
+                status: 'Stun'
+              children:  {}

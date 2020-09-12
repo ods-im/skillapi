@@ -1,0 +1,41 @@
+Galvanize:
+
+  name: 'Galvanize'
+  type: 'AOE Buff'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 30
+    mana-scale: -2
+    cooldown-base: 12
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'GOLD_BOOTS'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Duration: {attr:dur.seconds}'
+  - ''
+  - '&7Rallies nearby allies,'
+  - '&7speeding them up and'
+  - '&7cleansing negative'
+  - '&7effects on them.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:  {}

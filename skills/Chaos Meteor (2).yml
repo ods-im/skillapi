@@ -1,0 +1,190 @@
+Chaos Meteor:
+
+  name: 'Chaos Meteor'
+  type: 'Target AOE'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    level-base: '40'
+    level-scale: '0'
+    cost-base: '5'
+    cost-scale: '0'
+    cooldown-base: '40'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+  msg: '&7{player} has cast &e{skill}'
+  icon: 'FIREBALL'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore:
+  - '&e{name} &7({level}/{max})'
+  - '&7Type: {type}'
+  - ''
+  - '&7{req:level}Level: {attr:level}'
+  - '&7{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&3Mana: {attr:mana}'
+  - '&7Cooldown: {attr:cooldown}'
+  - '&7Damage: {attr:dmg.value}'
+  - '&7Burn: {attr:fire.seconds}'
+  - ''
+  - '&7Call down a meteor to'
+  - '&7damage and combust'
+  - '&7all enemies in an AOE'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      indicator: '3D'
+      data:
+        icon-key: ''
+        indicator: '2D'
+      children:
+        Location-b:
+          type: 'target'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            range-base: '30'
+            range-scale: '0'
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children:
+            Particle Projectile-c:
+              type: 'mechanic'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Rain'
+                particle: 'Huge Explosion'
+                arrangement: 'Sphere'
+                radius-base: '2'
+                radius-scale: '0'
+                particles-base: '1'
+                particles-scale: '0'
+                visible-radius: '50'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '10'
+                frequency: '0.05'
+                velocity-base: '-0.4'
+                velocity-scale: '0'
+                amount-base: '1'
+                amount-scale: '0'
+                lifespan: '10'
+                height-base: '20'
+                height-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-d:
+              type: 'mechanic'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.25'
+                delay-scale: '0'
+                indicator: '2D'
+              children:
+                Particle Projectile-e:
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    group: 'Enemy'
+                    spread: 'Rain'
+                    particle: 'Mobspawner Flames'
+                    arrangement: 'Sphere'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    data: '0'
+                    frequency: '0.05'
+                    velocity-base: '-0.4'
+                    velocity-scale: '0'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    lifespan: '10'
+                    height-base: '20'
+                    height-scale: '0'
+                    indicator: '2D'
+                  children:
+                    Area-f:
+                      type: 'target'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        radius-base: '5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'False'
+                        caster: 'False'
+                        max-base: '99'
+                        max-scale: '0'
+                        indicator: '2D'
+                      children:
+                        Damage-g:
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data:
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '18'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Fire-h:
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            seconds-base: '5'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle Animation-i:
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            steps: '1'
+                            frequency: '0.05'
+                            angle: '0'
+                            start: '0'
+                            duration-base: '2'
+                            duration-scale: '0'
+                            h-translation-base: '0'
+                            h-translation-scale: '0'
+                            v-translation-base: '0'
+                            v-translation-scale: '0'
+                            h-cycles: '1'
+                            v-cycles: '1'
+                            particle: 'Explode'
+                            arrangement: 'Circle'
+                            radius-base: '4'
+                            radius-scale: '0'
+                            particles-base: '20'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '25'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            forward: '0'
+                            upward: '0'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}

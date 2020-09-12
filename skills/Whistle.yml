@@ -1,0 +1,55 @@
+Whistle:
+
+  name: Whistle
+  type: Summon
+  max-level: 5
+  skill-req-lvl: 0
+  needs-permission: false
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: BONE
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Duration: {attr:wolf.duration}'
+  - '&2Damage: {attr:wolf.damage}'
+  - '&2Health: {attr:wolf.health}'
+  - ''
+  - '&7Summons a wolf that fights'
+  - '&7by your side temporarily'
+  desc: []
+  components:
+    Cast:
+      type: trigger
+      data:
+        icon-key: ''
+      children:
+        Wolf-b:
+          type: mechanic
+          data:
+            health-base: 12
+            color: Green
+            counts: 'True'
+            damage-scale: 1
+            name: '&2{player}''s Wolf'
+            icon-key: wolf
+            health-scale: 3
+            damage-base: 3
+            seconds-scale: 5
+            seconds-base: 20
+          children: {}

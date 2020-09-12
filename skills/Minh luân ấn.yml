@@ -1,0 +1,317 @@
+Minh luân ấn:
+
+  name: 'Minh luân ấn'
+  type: 'Liên kết'
+  max-level: 5
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible:
+    - ''
+  msg: '&7{player} đã sài &e{skill}'
+  icon: 'LEASH'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore:
+  - '&7{name} &7[&f{level}&7/&f{max}&7]'
+  - '&7Loại:&f {type}'
+  - '&7Năng lượng:&6 {attr:mana}'
+  - '&7Thời gian hồi:&6 {attr:cooldown}'
+  - '&7Tầm sử dụng :&6 {attr:M7_range.range}'
+  - '&7&l&m-------------------------'
+  - '&eLiên kết vào một đồng minh'
+  - '&e(vẫn có thể gây sát thương cho nhau)'
+  - '&ekhi một trong hai nhận sát thương'
+  - '&engười còn lại sẽ được hồi máu'
+  - '&7&l&m-------------------------'
+  - '&7Thời gian liên kết :&6 {attr:M7_time.seconds}'
+  - '&7Số máu hồi :&6 {attr:M7_healing.value}'
+  - '&7&l&m-------------------------'
+  - '&7Cần đạt cấp &6{attr:level}&7 để nâng kĩ năng'
+  - '&7Cần &6{attr:cost}&7 để nâng kĩ năng'
+  - '&7Cần cầm vật phẩm : &6Không'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      indicator: '3D'
+      data:
+        icon-key: ''
+        indicator: '2D'
+      children:
+        Single-b:
+          type: 'target'
+          indicator: '3D'
+          data:
+            icon-key: 'M7_range'
+            range-base: '5'
+            range-scale: '0'
+            tolerance-base: '4'
+            tolerance-scale: '0'
+            group: 'Both'
+            wall: 'False'
+            indicator: '2D'
+            caster: 'false'
+          children:
+            Entity Type-c:
+              type: 'condition'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                types:
+                - 'Player'
+                indicator: '2D'
+              children:
+                Remember Targets-d:
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Minh luân ấn'
+                    indicator: '2D'
+                  children:  {}
+                Self-e:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children:
+                    Flag-f:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: 'M7_time'
+                        counts: 'True'
+                        key: 'Minh luân ấn'
+                        seconds-base: '5'
+                        seconds-scale: '1'
+                        indicator: '2D'
+                      children:  {}
+    Initialize:
+      type: 'trigger'
+      indicator: '3D'
+      data:
+        icon-key: ''
+        indicator: '2D'
+      children:
+        Passive-h:
+          type: 'mechanic'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children:
+            Flag-i:
+              type: 'condition'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                type: 'Set'
+                key: 'Minh luân ấn'
+                indicator: '2D'
+              children:
+                Repeat-j:
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '10'
+                    repetitions-scale: '2'
+                    period: '0.5'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children:
+                    Remember-k:
+                      type: 'target'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        key: 'Minh luân ấn'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children:
+                        Particle-l:
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Red Dust'
+                            arrangement: 'Sphere'
+                            radius-base: '0.1'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            visible-radius: '25'
+                            dx: '0.5'
+                            dy: '1'
+                            dz: '1'
+                            speed: '1'
+                            amount: '0'
+                            forward: '0'
+                            upward: '4'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Self-m:
+                      type: 'target'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children:
+                        Particle-n:
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data:
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Red Dust'
+                            arrangement: 'Sphere'
+                            radius-base: '0.1'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            visible-radius: '25'
+                            dx: '0.5'
+                            dy: '1'
+                            dz: '1'
+                            speed: '1'
+                            amount: '0'
+                            forward: '0'
+                            upward: '4'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+            Flag-o:
+              type: 'condition'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                type: 'Set'
+                key: 'Minh luân ấn'
+                indicator: '2D'
+              children:
+                Remember-p:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    key: 'Minh luân ấn'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children:
+                    Trigger-q:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        trigger: 'Took Physical Damage'
+                        duration-base: '5'
+                        duration-scale: '1'
+                        stackable: 'True'
+                        once: 'False'
+                        type: 'Both'
+                        target: 'True'
+                        dmg-min: '0'
+                        dmg-max: '999'
+                        indicator: '2D'
+                      children:
+                        Self-r:
+                          type: 'target'
+                          indicator: '3D'
+                          data:
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children:
+                            Heal-s:
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data:
+                                icon-key: 'M7_healing'
+                                counts: 'True'
+                                type: 'Health'
+                                value-base: '3'
+                                value-scale: '1'
+                                indicator: '2D'
+                              children:  {}
+                Self-t:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children:
+                    Trigger-u:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        trigger: 'Took Physical Damage'
+                        duration-base: '5'
+                        duration-scale: '1'
+                        stackable: 'True'
+                        once: 'False'
+                        type: 'Both'
+                        target: 'True'
+                        dmg-min: '0'
+                        dmg-max: '999'
+                        indicator: '2D'
+                      children:
+                        Remember-v:
+                          type: 'target'
+                          indicator: '3D'
+                          data:
+                            icon-key: ''
+                            key: 'Minh luân ấn'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children:
+                            Heal-w:
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data:
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Health'
+                                value-base: '3'
+                                value-scale: '1'
+                                indicator: '2D'
+                              children:  {}

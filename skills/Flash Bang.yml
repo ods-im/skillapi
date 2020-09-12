@@ -1,0 +1,55 @@
+Flash Bang:
+
+  name: 'Flash Bang'
+  type: 'Utility Projectile'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 18
+    mana-scale: -1
+    cooldown-base: 12
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'FIREWORK_CHARGE'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Stun: {attr:stun.duration}'
+  - ''
+  - '&7Launches a flash bomb'
+  - '&7that stuns affected enemies'
+  - '&7for a brief duration.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Potion Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            type: 'Strength'
+            group: 'Enemy'
+          children:
+            Status-c:
+              type: 'mechanic'
+              data:
+                duration-base: 1
+                icon-key: 'stun'
+                duration-scale: 0.25
+                status: 'Stun'
+              children:  {}

@@ -1,0 +1,178 @@
+无畏:
+
+  name: '无畏'
+  type: '职业被动'
+  max-level: 1
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Acacia Boat'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&c职业被动技能'
+  - ''
+  - ''
+  - '&b嗜血：'
+  - '&3每隔&660秒&3&3下次攻击将造成额外&6{attr:damage.value}&3点伤害'
+  - '&3并恢复&6{attr:attheal.value}&3点生命值。'
+  - ''
+  - '&b恢复：'
+  - '&3脱离战斗后，每&65秒&3恢复&e{attr:heal.value}&6%&3生命值与&e{attr:mana.value}&6%&3法力值。'
+  attributes:
+    level-base: 1
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 0
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Physical Damage-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: 1
+        dmg-max: 999
+      children:
+        Flag-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Set'
+            key: 'heal'
+          children:
+            Heal-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'attheal'
+                counts: 'True'
+                type: 'Health'
+                value-base: 10
+                value-scale: 0
+            Single-d:
+              type: 'target'
+              data:
+                icon-key: ''
+                range-base: 5
+                range-scale: 0
+                tolerance-base: 4
+                tolerance-scale: 0
+                group: 'Enemy'
+                wall: 'False'
+              children:
+                Damage-e:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'damage'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 10
+                    value-scale: 0
+                    true: 'False'
+                    classifier: 'default'
+            Command-f:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'sudo {player} /cp class_beidong false'
+                type: 'Console'
+            Flag Clear-g:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'heal'
+    Initialize-h:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-i:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 30
+            seconds-scale: 0
+          children:
+            Flag-j:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                key: 'heal'
+                seconds-base: 60
+                seconds-scale: NaN
+            Delay-k:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                delay-base: 59
+                delay-scale: 0
+              children:
+                Flag-l:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    type: 'Set'
+                    key: 'heal'
+                  children:
+                    Flag Clear-m:
+                      type: 'mechanic'
+                      data:
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'heal'
+            Command-n:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                command: 'sudo {player} /cp class_beidong true'
+                type: 'Console'
+        Passive-o:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            seconds-base: 5
+            seconds-scale: 0
+          children:
+            Combat-p:
+              type: 'condition'
+              data:
+                icon-key: ''
+                combat: 'False'
+                seconds: 5
+              children:
+                Heal-q:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'heal'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: 2
+                    value-scale: 1
+                Mana-r:
+                  type: 'mechanic'
+                  data:
+                    icon-key: 'mana'
+                    counts: 'True'
+                    type: 'Percent'
+                    value-base: 2
+                    value-scale: 0

@@ -1,0 +1,58 @@
+Grapple:
+
+  name: Grapple
+  type: Target
+  max-level: 5
+  skill-req-lvl: 0
+  needs-permission: false
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: STRING
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Range: {attr:target.range}'
+  - ''
+  - '&7Drags in the target,'
+  - '&7regardless of ally or enemy,'
+  - '&7bringing them closer'
+  desc: []
+  components:
+    Cast:
+      type: trigger
+      data:
+        icon-key: ''
+      children:
+        Single-b:
+          type: target
+          data:
+            range-scale: 2
+            range-base: 4
+            icon-key: target
+            wall: 'True'
+            tolerance: 4
+            group: Both
+          children:
+            Push-c:
+              type: mechanic
+              data:
+                speed-base: -1.2
+                speed-scale: -0.6
+                counts: 'True'
+                icon-key: ''
+              children: {}

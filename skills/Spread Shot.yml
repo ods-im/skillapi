@@ -1,0 +1,67 @@
+Spread Shot:
+
+  name: 'Spread Shot'
+  type: 'AOE Projectile'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'Bow'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Fires multiple arrows in'
+  - '&7a cone, dealing moderate'
+  - '&7damage to enemies hit.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 4
+    cooldown-scale: 0
+    mana-base: 20
+    mana-scale: 0
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            spread: 'Cone'
+            projectile: 'Arrow'
+            cost: 'All'
+            speed-base: 3
+            speed-scale: 0
+            amount-base: 7
+            amount-scale: 0
+            angle-base: 90
+            angle-scale: 0
+            height-base: 8
+            height-scale: 0
+            radius-base: 2
+            radius-scale: 0
+          children:
+            Damage-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 4
+                value-scale: 1

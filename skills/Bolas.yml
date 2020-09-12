@@ -1,0 +1,69 @@
+Bolas:
+
+  name: Bolas
+  type: Projectile
+  max-level: 5
+  skill-req-lvl: 0
+  needs-permission: false
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: TRIPWIRE
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Root: {attr:root.duration}'
+  - ''
+  - '&7Launches a bola that'
+  - '&7roots the first enemy'
+  - '&7hit in place for a short'
+  - '&7time, stopping movement'
+  desc: []
+  components:
+    Cast:
+      type: trigger
+      data:
+        icon-key: ''
+      children:
+        Item Projectile-b:
+          type: mechanic
+          data:
+            item: String
+            height-scale: 0
+            counts: 'True'
+            radius-scale: 0
+            radius-base: 2
+            amount-base: 1
+            spread: Cone
+            angle-scale: 0
+            velocity-base: 3
+            height-base: 8
+            icon-key: ''
+            amount-scale: 0
+            angle-base: 0
+            item-data: 0
+            velocity-scale: 0
+          children:
+            Status-c:
+              type: mechanic
+              data:
+                duration-base: 1
+                counts: 'True'
+                icon-key: root
+                duration-scale: 0.25
+                status: Root
+              children: {}

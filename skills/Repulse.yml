@@ -1,0 +1,58 @@
+Repulse:
+
+  name: 'Repulse'
+  type: 'AOE Utility'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: -1
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 28
+    mana-scale: -1
+    cooldown-base: 12
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'PISTON_BASE'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Speed: {attr:spd.speed}'
+  - ''
+  - '&7Pushes away all nearby'
+  - '&7players and mobs.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Area-b:
+          type: 'target'
+          data:
+            max-base: 99
+            caster: 'False'
+            radius-scale: 0.5
+            icon-key: ''
+            radius-base: 2
+            wall: 'True'
+            max-scale: 0
+            group: 'Both'
+          children:
+            Push-c:
+              type: 'mechanic'
+              data:
+                speed-base: 1
+                speed-scale: 0.5
+                icon-key: 'spd'
+              children:  {}

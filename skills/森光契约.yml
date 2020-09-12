@@ -1,0 +1,83 @@
+森光契约:
+
+  name: '森光契约'
+  type: '主动技能'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: '1'
+    cooldown-scale: '0'
+    cost-scale: '0'
+    level-scale: '0'
+    level-base: '10'
+    mana-base: '0'
+    mana-scale: '0'
+    cooldown-base: '0'
+  icon: 'GOLDEN_APPLE'
+  icon-data: 0
+  icon-lore:
+  - '&6《&a{name}&6》 &7({level}/{max})'
+  - '&8&m-------------------------'
+  - '&6技能类型&8: &a主动技能'
+  - '&6技能前置&8: &a无'
+  - '&8&m-------------------------'
+  - '&6技能描述&8:'
+  - '&7与森林之神雷尼斯特签下'
+  - '&7契约并获得源源不断的魔'
+  - '&7力。'
+  - '&8&m-------------------------'
+  - '&3被动效果&7:'
+  - '&f白天&7: &7每秒恢复 &9{attr:sgqy.value}&7 点森光值'
+  - '&d黑夜&7: &7每秒恢复 &e{attr:sgqysmz.value}&7 点生命值'
+  - '&8&m-------------------------'
+  desc:  []
+  components:
+    Initialize:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-b:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Passive-c:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                seconds-scale: '0'
+                seconds-base: '1'
+              children:
+                Time-d:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    time: 'Day'
+                  children:
+                    Mana-e:
+                      type: 'mechanic'
+                      data:
+                        counts: 'True'
+                        value-scale: '0'
+                        icon-key: 'sgqy'
+                        type: 'Mana'
+                        value-base: '2'
+                      children:  {}
+                Time-f:
+                  type: 'condition'
+                  data:
+                    icon-key: ''
+                    time: 'Night'
+                  children:
+                    Heal-g:
+                      type: 'mechanic'
+                      data:
+                        counts: 'True'
+                        value-scale: '0'
+                        icon-key: 'sgqysmz'
+                        type: 'Health'
+                        value-base: '2'
+                      children:  {}

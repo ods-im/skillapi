@@ -1,0 +1,82 @@
+Blinding Dart:
+
+  name: Blinding Dart
+  type: Projectile
+  max-level: 5
+  skill-req-lvl: 0
+  needs-permission: false
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: COAL
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - '&2Blind: {attr:blind.seconds}'
+  - ''
+  - '&7Throws a dart that'
+  - '&7blinds the first enemy'
+  - '&7hit for a short time,'
+  - '&7impairing their vision.'
+  desc: []
+  components:
+    Cast:
+      type: trigger
+      data:
+        icon-key: ''
+      children:
+        Projectile-b:
+          type: mechanic
+          data:
+            height-scale: 0
+            cost: ''
+            counts: 'True'
+            radius-scale: 0
+            radius-base: 2
+            amount-base: 1
+            spread: Cone
+            angle-scale: 0
+            speed-base: 3
+            speed-scale: 0
+            height-base: 8
+            icon-key: ''
+            amount-scale: 0
+            angle-base: 0
+            projectile: Arrow
+          children:
+            Damage-c:
+              type: mechanic
+              data:
+                counts: 'True'
+                value-scale: 1
+                icon-key: dmg
+                value-base: 7
+                type: Damage
+              children: {}
+            Potion-d:
+              type: mechanic
+              data:
+                potion: Blindness
+                counts: 'True'
+                icon-key: blind
+                ambient: 'True'
+                tier-scale: 0
+                seconds-scale: 0.5
+                tier-base: 2
+                seconds-base: 2
+              children: {}

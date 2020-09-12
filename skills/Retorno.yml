@@ -1,0 +1,81 @@
+Retorno:
+
+  name: 'Retorno'
+  type: 'Pasiva'
+  max-level: 1
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  indicator: '2D'
+  icon: 'Jack O Lantern'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - ''
+  - '&7Cuando el jugador reciba &610 '
+  - '&7 o más daño, dañará al atacante por '
+  - '&63 &7 de daño'
+  attributes:
+    level-base: 3
+    level-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 7
+    cooldown-scale: 0
+    mana-base: 0
+    mana-scale: 0
+    points-spent-req-base: 0
+    points-spent-req-scale: 0
+    incompatible:
+    - ''
+  components:
+    Took Physical Damage-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: 8
+        dmg-max: 999
+      children:
+        Area-b:
+          type: 'target'
+          data:
+            icon-key: ''
+            radius-base: 3
+            radius-scale: 0
+            group: 'Enemy'
+            wall: 'False'
+            caster: 'False'
+            max-base: 2
+            max-scale: 1
+            random: 'True'
+          children:
+            Chance-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                chance-base: 30
+                chance-scale: 15
+              children:
+                Damage-d:
+                  type: 'mechanic'
+                  data:
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: 3
+                    value-scale: 1
+                    true: 'True'
+                    classifier: 'default'

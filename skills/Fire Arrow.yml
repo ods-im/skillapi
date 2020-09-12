@@ -1,0 +1,75 @@
+Fire Arrow:
+
+  name: 'Fire Arrow'
+  type: 'Projectile'
+  max-level: 5
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'Fireball'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - ''
+  - '&7Fires a flaming arrow '
+  - '&7that deals additional '
+  - '&7damage and sets the'
+  - '&7target on fire.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 6
+    cooldown-scale: 0
+    mana-base: 20
+    mana-scale: 0
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Projectile-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            counts: 'True'
+            spread: 'Cone'
+            projectile: 'Arrow'
+            cost: 'One'
+            speed-base: 3
+            speed-scale: 0
+            amount-base: 1
+            amount-scale: 0
+            angle-base: 30
+            angle-scale: 0
+            height-base: 8
+            height-scale: 0
+            radius-base: 2
+            radius-scale: 0
+          children:
+            Damage-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'dmg'
+                counts: 'True'
+                type: 'Damage'
+                value-base: 6
+                value-scale: 1
+            Fire-d:
+              type: 'mechanic'
+              data:
+                icon-key: ''
+                counts: 'True'
+                seconds-base: 5
+                seconds-scale: 0

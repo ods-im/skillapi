@@ -1,0 +1,150 @@
+Selo Accelerando:
+
+  name: 'Selo Accelerando'
+  type: 'Melody - Speed'
+  max-level: 5
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: 1
+    cooldown-scale: 0
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 8
+    mana-scale: 0
+    cooldown-base: 6
+  msg: '&6{player} &2has begun playing &6{skill}'
+  icon: 'RECORD_3'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - '&fYou play a light tune that'
+  - '&fincreases your allies movement'
+  - '&fspeed by {attr:seloSpeed.multiplier}.'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Flag-h:
+          type: 'mechanic'
+          data:
+            counts: 'True'
+            icon-key: ''
+            key: 'seloPlaying'
+            seconds-scale: 0
+            seconds-base: 180
+          children:  {}
+        Flag Clear-i:
+          type: 'mechanic'
+          data:
+            counts: 'True'
+            icon-key: ''
+            key: 'hymnPlaying'
+          children:  {}
+        Delay-j:
+          type: 'mechanic'
+          data:
+            counts: 'True'
+            delay-base: 178
+            icon-key: ''
+            delay-scale: 0
+          children:
+            Flag-k:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'Set'
+                key: 'seloPlaying'
+              children:
+                Message-l:
+                  type: 'mechanic'
+                  data:
+                    counts: 'True'
+                    icon-key: ''
+                    message: 'Your song ends.'
+                  children:  {}
+        Sound-m:
+          type: 'mechanic'
+          data:
+            pitch-scale: 0
+            counts: 'True'
+            sound: 'Note Piano'
+            volume-base: 80
+            volume-scale: 0
+            icon-key: ''
+            pitch-base: 0
+          children:  {}
+    Initialize:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-b:
+          type: 'mechanic'
+          data:
+            counts: 'True'
+            icon-key: ''
+            seconds-scale: 0
+            seconds-base: 5
+          children:
+            Flag-c:
+              type: 'condition'
+              data:
+                icon-key: ''
+                type: 'Set'
+                key: 'seloPlaying'
+              children:
+                Area-d:
+                  type: 'target'
+                  data:
+                    caster: 'True'
+                    max-base: 99
+                    radius-scale: 0
+                    icon-key: ''
+                    radius-base: 3
+                    wall: 'False'
+                    group: 'Ally'
+                    max-scale: 0
+                  children:
+                    Speed-e:
+                      type: 'mechanic'
+                      data:
+                        multiplier-base: 1.2
+                        duration-base: 6
+                        counts: 'True'
+                        icon-key: 'seloSpeed'
+                        multiplier-scale: 0.1
+                        duration-scale: 0
+                      children:  {}
+                    Particle-f:
+                      type: 'mechanic'
+                      data:
+                        visible-radius: 25
+                        data: 0
+                        counts: 'True'
+                        forward: 0
+                        radius-scale: 0
+                        right: 0
+                        radius-base: 2
+                        amount-base: 4
+                        speed: 1
+                        arrangement: 'Circle'
+                        dx: 0
+                        dy: 0
+                        dz: 0
+                        icon-key: ''
+                        particle: 'Note'
+                        amount-scale: 0
+                        upward: 0
+                        direction: 'XZ'
+                      children:  {}

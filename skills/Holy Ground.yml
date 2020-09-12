@@ -1,0 +1,143 @@
+Holy Ground:
+
+  name: 'Holy Ground'
+  type: 'Target AOE'
+  max-level: 6
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '24'
+    cooldown-scale: '0'
+    mana-base: '40'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: ' {}'
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SUGAR_CANE'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.value}'
+  - '&2Heal: {attr:heal.value}'
+  - ''
+  - 'Creates a zone that heals allies and'
+  - 'damages enemies each second '
+  - 'for a duration.'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      indicator: '3D'
+      data:
+        icon-key: ''
+        indicator: '2D'
+      children:
+        Location-b:
+          type: 'target'
+          indicator: '3D'
+          data:
+            icon-key: ''
+            range-base: '5'
+            range-scale: '0'
+            ground: 'True'
+            indicator: '2D'
+          children:
+            Particle Effect-c:
+              type: 'mechanic'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                counts: 'True'
+                effect-key: 'holy-ground'
+                duration-base: '8'
+                duration-scale: '0'
+                -shape: 'one-circle'
+                -shape-dir: 'XZ'
+                -shape-size: '3'
+                -animation: 'linear'
+                -anim-dir: 'YZ'
+                -anim-size: '3'
+                -interval: '4'
+                -view-range: '25'
+                -particle-type: 'VILLAGER_HAPPY'
+                -particle-amount: '0'
+                -particle-dx: '0'
+                -particle-dy: '0'
+                -particle-dz: '0'
+                -particle-speed: '1'
+                indicator: '2D'
+              children:  {}
+            Repeat-d:
+              type: 'mechanic'
+              indicator: '3D'
+              data:
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '8'
+                repetitions-scale: '0'
+                period: '1'
+                delay: '0'
+                indicator: '2D'
+              children:
+                Area-e:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    radius-base: '3'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '99'
+                    max-scale: '0'
+                    indicator: '2D'
+                  children:
+                    Damage-f:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '1'
+                        value-scale: '0.5'
+                        true: 'False'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+                Area-g:
+                  type: 'target'
+                  indicator: '3D'
+                  data:
+                    icon-key: ''
+                    radius-base: '3'
+                    radius-scale: '0'
+                    group: 'Ally'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '99'
+                    max-scale: '0'
+                    indicator: '2D'
+                  children:
+                    Heal-h:
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data:
+                        icon-key: 'heal'
+                        counts: 'True'
+                        type: 'Health'
+                        value-base: '1'
+                        value-scale: '0.4'
+                        indicator: '2D'
+                      children:  {}

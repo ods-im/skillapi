@@ -1,0 +1,198 @@
+Echoed Blast:
+
+  name: 'Echoed Blast'
+  type: 'Dynamic'
+  max-level: 5
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: 1
+    cooldown-scale: 0
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 10
+    mana-scale: 0
+    cooldown-base: 3
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'NOTE_BLOCK'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Damage: {attr:dmg.amount}'
+  - ''
+  - 'Damages all enemies in an area, dealing more damage with successive casts'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Value Set-b:
+          type: 'mechanic'
+          data:
+            counts: 'False'
+            value-scale: 0
+            icon-key: ''
+            value-base: 'stacks'
+            key: 'manaCost'
+          children:  {}
+        Value Multiply-c:
+          type: 'mechanic'
+          data:
+            multiplier-base: 2
+            counts: 'False'
+            icon-key: ''
+            multiplier-scale: 0
+            key: 'manaCost'
+          children:  {}
+        Value Add-d:
+          type: 'mechanic'
+          data:
+            counts: 'True'
+            icon-key: ''
+            amount-scale: 0
+            amount-base: 10
+            key: 'manaCost'
+          children:  {}
+        Mana-e:
+          type: 'condition'
+          data:
+            min-value-scale: 0
+            max-value-scale: 0
+            icon-key: ''
+            max-value-base: 9999
+            type: 'Mana'
+            min-value-base: 'manaCost'
+          children:
+            Value Set-f:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: 0
+                icon-key: ''
+                value-base: 'stacks'
+                key: 'damage'
+              children:  {}
+            Value Multiply-g:
+              type: 'mechanic'
+              data:
+                multiplier-base: 3
+                counts: 'True'
+                icon-key: ''
+                multiplier-scale: 0
+                key: 'damage'
+              children:  {}
+            Value Add-h:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: 'dmg'
+                amount-scale: 2
+                amount-base: 5
+                key: 'damage'
+              children:  {}
+            Delay-i:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                delay-base: 15
+                icon-key: ''
+                delay-scale: 0
+              children:
+                Value Add-j:
+                  type: 'mechanic'
+                  data:
+                    counts: 'True'
+                    icon-key: ''
+                    amount-scale: 0
+                    amount-base: -1
+                    key: 'stacks'
+                  children:  {}
+            Value Add-k:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                amount-scale: 0
+                amount-base: -10
+                key: 'manaCost'
+              children:  {}
+            Value Multiply-l:
+              type: 'mechanic'
+              data:
+                multiplier-base: -1
+                counts: 'True'
+                icon-key: ''
+                multiplier-scale: 0
+                key: 'manaCost'
+              children:  {}
+            Mana-m:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: 0
+                icon-key: ''
+                type: 'Mana'
+                value-base: 'manaCost'
+              children:  {}
+            Area-n:
+              type: 'target'
+              data:
+                caster: 'False'
+                max-base: 99
+                radius-scale: 0
+                icon-key: ''
+                radius-base: 3
+                wall: 'False'
+                group: 'Enemy'
+                max-scale: 0
+              children:
+                Damage-o:
+                  type: 'mechanic'
+                  data:
+                    counts: 'True'
+                    value-scale: 0
+                    icon-key: ''
+                    type: 'Damage'
+                    value-base: 'damage'
+                  children:  {}
+            Value Add-p:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                amount-scale: 0
+                amount-base: 1
+                key: 'stacks'
+              children:  {}
+            Particle-q:
+              type: 'mechanic'
+              data:
+                visible-radius: 25
+                data: 0
+                counts: 'True'
+                forward: 0
+                radius-scale: 0
+                right: 0
+                radius-base: 3
+                amount-base: 20
+                speed: 1
+                arrangement: 'Circle'
+                dx: 0
+                dy: 0
+                dz: 0
+                icon-key: ''
+                particle: 'Angry Villager'
+                amount-scale: 0
+                upward: 0
+                direction: 'XZ'
+              children:  {}

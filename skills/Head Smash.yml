@@ -1,0 +1,59 @@
+Head Smash:
+
+  name: 'Head Smash'
+  type: 'Target'
+  max-level: 4
+  skill-req: ''
+  skill-req-lvl: 1
+  needs-permission: 'False'
+  msg: '&6{player} &2has cast &6{skill}'
+  combo: ''
+  icon: 'Iron Helmet'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Mana: {attr:mana}'
+  - '&2Cooldown: {attr:cooldown}'
+  - '&2Stun: {attr:stun.duration}'
+  - ''
+  - 'Bashes the target with'
+  - 'your head, leaving them'
+  - 'stunned for a short time.'
+  attributes:
+    level-base: 1
+    level-scale: 1
+    cost-base: 1
+    cost-scale: 0
+    cooldown-base: 12
+    cooldown-scale: -1
+    mana-base: 20
+    mana-scale: 0
+  components:
+    Cast-a:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Single-b:
+          type: 'target'
+          data:
+            icon-key: ''
+            range-base: 2
+            range-scale: 0
+            tolerance: 4
+            group: 'Enemy'
+            wall: 'False'
+          children:
+            Status-c:
+              type: 'mechanic'
+              data:
+                icon-key: 'stun'
+                counts: 'True'
+                status: 'Stun'
+                duration-base: 1
+                duration-scale: 0.2

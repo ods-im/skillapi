@@ -1,0 +1,94 @@
+斜斬:
+
+  name: '斜斬'
+  type: '主動技能'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: '1'
+    cooldown-scale: '-1'
+    cost-scale: '0'
+    level-scale: '4'
+    level-base: '1'
+    mana-base: '3'
+    mana-scale: '-1'
+    cooldown-base: '2'
+  msg: '&6{player} &2釋放技能 &6{skill}'
+  icon: 'WOOD_SWORD'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&8一一一一一一一一一一一一一一一一'
+  - '&a類型: &6{type}'
+  - ''
+  - '{req:level}等級需求: {attr:level}'
+  - '{req:cost}消耗技能點: {attr:cost}'
+  - ''
+  - '&b消耗魔力: {attr:mana}'
+  - '&7冷卻時間: {attr:cooldown}'
+  - ''
+  - '&e技能敘述:'
+  - '&e基礎技能，對自身周圍附近的敵人造'
+  - '&e成傷害。'
+  - '&8一一一一一一一一一一一一一一一一'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Nearest-b:
+          type: 'target'
+          data:
+            caster: 'False'
+            max-base: '3'
+            radius-scale: '0'
+            icon-key: ''
+            radius-base: '3'
+            wall: 'False'
+            group: 'Enemy'
+            max-scale: '0'
+          children:
+            Particle-c:
+              type: 'mechanic'
+              data:
+                visible-radius: '25'
+                amount: '1'
+                counts: 'True'
+                forward: '0'
+                radius-scale: '0'
+                particles-scale: '0'
+                particles-base: '5'
+                right: '0'
+                radius-base: '1'
+                speed: '1'
+                arrangement: 'Circle'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                icon-key: ''
+                particle: 'Angry Villager'
+                direction: 'XZ'
+                upward: '0'
+              children:  {}
+            Damage-d:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                value-scale: '1'
+                true: 'False'
+                icon-key: ''
+                type: 'Damage'
+                value-base: '4'
+              children:  {}
+            Push-e:
+              type: 'mechanic'
+              data:
+                speed-base: '0.5'
+                speed-scale: '0'
+                counts: 'True'
+                icon-key: ''
+                type: 'Fixed'
+              children:  {}

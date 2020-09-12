@@ -1,0 +1,124 @@
+Immunity:
+
+  name: 'Immunity'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 0
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'DIAMOND'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Rank 1: &6Poison'
+  - '&2Rank 2: &6Wither'
+  - '&2Rank 3: &6Slow'
+  - '&2Rank 4: &6Weakness'
+  - '&2Rank 5: &6All Potions'
+  - '&7- Effects are cumulative -'
+  - ''
+  - '&7Grants immunity so some'
+  - '&7negative potion effects.'
+  desc:  []
+  components:
+    Initialize:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            seconds-scale: 0
+            seconds-base: 0.5
+          children:
+            Skill Level-c:
+              type: 'condition'
+              data:
+                max-level: 4
+                skill: 'Immunity'
+                icon-key: ''
+                min-level: 1
+              children:
+                Cleanse-d:
+                  type: 'mechanic'
+                  data:
+                    potion: 'Poison'
+                    icon-key: ''
+                    status: ''
+                  children:  {}
+            Skill Level-e:
+              type: 'condition'
+              data:
+                max-level: 4
+                skill: 'Immunity'
+                icon-key: ''
+                min-level: 2
+              children:
+                Cleanse-f:
+                  type: 'mechanic'
+                  data:
+                    potion: 'Wither'
+                    icon-key: ''
+                    status: ''
+                  children:  {}
+            Skill Level-g:
+              type: 'condition'
+              data:
+                max-level: 4
+                skill: 'Immunity'
+                icon-key: ''
+                min-level: 3
+              children:
+                Cleanse-h:
+                  type: 'mechanic'
+                  data:
+                    potion: 'Slow'
+                    icon-key: ''
+                    status: ''
+                  children:  {}
+            Skill Level-i:
+              type: 'condition'
+              data:
+                max-level: 4
+                skill: 'Immunity'
+                icon-key: ''
+                min-level: 4
+              children:
+                Cleanse-j:
+                  type: 'mechanic'
+                  data:
+                    potion: 'Weakness'
+                    icon-key: ''
+                    status: ''
+                  children:  {}
+            Skill Level-k:
+              type: 'condition'
+              data:
+                max-level: 5
+                skill: 'Immunity'
+                icon-key: ''
+                min-level: 5
+              children:
+                Cleanse-l:
+                  type: 'mechanic'
+                  data:
+                    potion: 'All'
+                    icon-key: ''
+                    status: ''
+                  children:  {}

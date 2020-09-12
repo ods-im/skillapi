@@ -1,0 +1,216 @@
+Electric Smite:
+
+  name: 'Electric Smite'
+  type: 'Target AOE'
+  max-level: 13
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes:
+    cost-base: 1
+    cooldown-scale: 0
+    cost-scale: 0
+    level-scale: 2
+    level-base: 45
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 30
+  msg: '&7{player} has cast &e{skill}'
+  icon: 'GOLD_PLATE'
+  icon-data: 0
+  icon-lore:
+  - '&e{name} &7({level}/{max})'
+  - '&7Type: {type}'
+  - ''
+  - '&7{req:level}Level: {attr:level}'
+  - '&7{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&3Mana: {attr:mana}'
+  - '&7Cooldown: {attr:cooldown}'
+  - ''
+  - '&7Damage: {attr:dmg.value}'
+  - ''
+  - '&7Jump in the air and'
+  - '&7hit the ground damaging'
+  - '&7all enemies around you'
+  desc:  []
+  components:
+    Cast:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Self-l:
+          type: 'target'
+          data:
+            icon-key: ''
+          children:
+            Launch-m:
+              type: 'mechanic'
+              data:
+                right-scale: 0
+                forward-base: 1.5
+                right-base: 0
+                forward-scale: 0
+                counts: 'True'
+                upward-scale: 0
+                icon-key: ''
+                upward-base: 1
+              children:  {}
+            Immunity-n:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                type: 'Fall'
+                seconds-scale: 0
+                seconds-base: 3
+              children:  {}
+            Immunity-o:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                type: 'Lightning'
+                seconds-scale: 0
+                seconds-base: 3
+              children:  {}
+            Particle Animation-p:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                particles-base: 5
+                type: 0
+                radius-base: 1
+                v-translation-base: 0
+                v-cycles: 1
+                frequency: 0.05
+                arrangement: 'Sphere'
+                angle: 0
+                particle: 'Block Crack'
+                h-translation-base: 0
+                upward: 0
+                v-translation-scale: 0
+                forward: 0
+                radius-scale: 0
+                start: 0
+                h-cycles: 1
+                particles-scale: 0
+                right: 0
+                duration-scale: 0
+                steps: 1
+                h-translation-scale: 0
+                duration-base: 1
+                material: 'Gold Block'
+                icon-key: ''
+              children:  {}
+            Flag-q:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                key: 'es'
+                seconds-scale: 0
+                seconds-base: 10
+              children:  {}
+    Land:
+      type: 'trigger'
+      data:
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: 0
+        icon-key: ''
+      children:
+        Flag-b:
+          type: 'condition'
+          data:
+            icon-key: ''
+            type: 'Set'
+            key: 'es'
+          children:
+            Area-c:
+              type: 'target'
+              data:
+                caster: 'False'
+                max-base: 99
+                radius-scale: 0
+                icon-key: ''
+                radius-base: 5
+                wall: 'False'
+                group: 'Enemy'
+                max-scale: 0
+              children:
+                Damage-d:
+                  type: 'mechanic'
+                  data:
+                    counts: 'True'
+                    value-scale: 2
+                    true: 'False'
+                    icon-key: 'dmg'
+                    type: 'Damage'
+                    value-base: 7
+                  children:  {}
+            Particle-e:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                forward: 0
+                radius-scale: 0
+                particles-scale: 0
+                particles-base: 100
+                right: 0
+                type: 0
+                radius-base: 5
+                arrangement: 'Hemisphere'
+                material: 'Dirt'
+                icon-key: ''
+                particle: 'Block Crack'
+                upward: 0
+              children:  {}
+            Lightning-f:
+              type: 'mechanic'
+              data:
+                right-scale: 0
+                forward-base: 3
+                right-base: 3
+                forward-scale: 0
+                counts: 'True'
+                icon-key: ''
+              children:  {}
+            Lightning-g:
+              type: 'mechanic'
+              data:
+                right-scale: 0
+                forward-base: 3
+                right-base: -3
+                forward-scale: 0
+                counts: 'True'
+                icon-key: ''
+              children:  {}
+            Lightning-h:
+              type: 'mechanic'
+              data:
+                right-scale: 0
+                forward-base: -3
+                right-base: -3
+                forward-scale: 0
+                counts: 'True'
+                icon-key: ''
+              children:  {}
+            Lightning-i:
+              type: 'mechanic'
+              data:
+                right-scale: 0
+                forward-base: -3
+                right-base: 3
+                forward-scale: 0
+                counts: 'True'
+                icon-key: ''
+              children:  {}
+            Flag Clear-j:
+              type: 'mechanic'
+              data:
+                counts: 'True'
+                icon-key: ''
+                key: 'es'
+              children:  {}

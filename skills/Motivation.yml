@@ -1,0 +1,68 @@
+Motivation:
+
+  name: 'Motivation'
+  type: 'Passive Aura'
+  max-level: 1
+  skill-req-lvl: 0
+  needs-permission: 'false'
+  attributes:
+    cooldown-scale: 0
+    cost-base: 1
+    cost-scale: 0
+    level-scale: 1
+    level-base: 1
+    mana-base: 0
+    mana-scale: 0
+    cooldown-base: 0
+  msg: '&6{player} &2has cast &6{skill}&r'
+  icon: 'DIAMOND'
+  icon-data: 0
+  icon-lore:
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '{req:level}Level: {attr:level}'
+  - '{req:cost}Cost: {attr:cost}'
+  - ''
+  - '&2Damage: {attr:buff.value}'
+  - '&2Radius: {attr:area.radius}'
+  - ''
+  - '&6+5 Morale'
+  - '&7Nearby allies gain a'
+  - '&7small amount of damage.'
+  desc:  []
+  components:
+    Initialize:
+      type: 'trigger'
+      data:
+        icon-key: ''
+      children:
+        Passive-b:
+          type: 'mechanic'
+          data:
+            icon-key: ''
+            seconds-scale: 0
+            seconds-base: 1
+          children:
+            Area-c:
+              type: 'target'
+              data:
+                max-base: 99
+                caster: 'True'
+                radius-scale: 2
+                icon-key: 'area'
+                radius-base: 2
+                wall: 'True'
+                max-scale: 0
+                group: 'Ally'
+              children:
+                Damage Buff-d:
+                  type: 'mechanic'
+                  data:
+                    value-scale: 0
+                    icon-key: 'buff'
+                    value-base: 2
+                    type: 'Flat'
+                    seconds-scale: 0
+                    seconds-base: 1.5
+                  children:  {}
