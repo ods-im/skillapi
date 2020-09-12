@@ -503,7 +503,7 @@ Component.prototype.update = function()
     {
         this.data[j].update();
     }
-};
+}
 
 /**
  * Gets the save string for the component
@@ -543,7 +543,7 @@ Component.prototype.getSaveString = function(spacing)
         }
     }
     return result;
-};
+}
 
 /**
  * Loads component data from the config lines stating at the given index
@@ -984,8 +984,8 @@ function ConditionBiome()
     this.data.push(new ListValue('类型', 'type', [ 'In Biome', 'Not In Biome' ], 'In Biome')
         .setTooltip('目标是否在生物群系中 [是/否]')
     );
-    this.data.push(new MultiListValue('群系', 'biome', getBiomes, [ 'Forest' ])
-            .setTooltip('生物群系')
+    this.data.push(new ByteListValue('群系', 'biome', [ 'Beach', 'Desert', 'Forest', 'Frozen', 'Hell', 'Hills', 'Ice', 'Jungle', 'Mesa', 'Mountains', 'Mushroom', 'Ocean', 'Plains', 'Plateau', 'River', 'Savanna', 'Shore', 'Sky', 'Swampland', 'Taiga' ], 1)
+            .setTooltip('要检查的生物群落。 这些充当生物群落组，包含名称中包含文本的所有生物群落。 例如，“ JUNGLE_HILLS”同时属于丛林和丘陵')
     );
 }
 
@@ -1036,7 +1036,7 @@ function ConditionClass()
 {
     this.super('Class', Type.CONDITION, true);
 
-    this.description = '当玩家为相应职业时，触发效果';
+    this.description = '当玩家为相应职业时，触发效果,';
 
     this.data.push(new StringValue('职业', 'class', 'Fighter')
         .setTooltip('职业名称')
@@ -1300,10 +1300,10 @@ function ConditionPotion()
 
     this.description = '当玩家具有相应药水效果时，触发效果';
 
-    this.data.push(new ListValue('类型', 'type', [ 'Active', 'Not Active' ], 'Active')
+    this.data.push(new ListValue('Potion', 'potion', [ 'Any', 'Absorption', 'Blindness', 'Confusion', 'Damage Resistance', 'Fast Digging', 'Fire Resistance', 'Glowing', 'Health Boost', 'Hunger', 'Increase Damage', 'Invisibility', 'Jump', 'Levitation', 'Luck', 'Night Vision', 'Poison', 'Regeneration', 'Saturation', 'Slow', 'Slow Digging', 'Speed', 'Unluck', 'Water Breathing', 'Weakness', 'Wither' ], 'Any')
         .setTooltip('是否具有效果')
     );
-    this.data.push(new ListValue('药水', 'potion', getAnyPotion, 'Any')
+    this.data.push(new ListValue('药水', 'potion', [ 'Any', 'Absorption', 'Blindness', 'Confusion', 'Damage Resistance', 'Fast Digging', 'Fire Resistance', 'Glowing', 'Health Boost', 'Hunger', 'Increase Damage', 'Invisibility', 'Jump', 'Levitation', 'Luck', 'Night Vision', 'Poison', 'Regeneration', 'Saturation', 'Slow', 'Slow Digging', 'Speed', 'Unluck', 'Water Breathing', 'Weakness', 'Wither' ], 'Any')
         .setTooltip('药水类型')
     );
     this.data.push(new AttributeValue('最小数值', 'min-rank', 0, 0)
@@ -1465,7 +1465,7 @@ function MechanicBlock()
     this.data.push(new ListValue('类型', 'type', [ 'Air', 'Any', 'Solid' ], 'Solid' )
         .setTooltip('替换类型 [空气/所有/方块]')
     );
-    this.data.push(new ListValue('方块', 'block', getMaterials, 'Ice')
+    this.data.push(new ListValue('方块', 'block', materialList, 'Ice')
         .setTooltip('替换方块类型')
     );
     this.data.push(new IntValue('方块 Data', 'data', 0)
@@ -1573,7 +1573,7 @@ function MechanicCleanse()
 
     this.description = '清除目标相应的负面药水效果与负面状态';
 
-    this.data.push(new ListValue('药水', 'potion', getBadPotions, 'All')
+    this.data.push(new ListValue('药水', 'potion', [ 'None', 'All', 'Blindness', 'Confusion', 'Hunger', 'Levitation', 'Poison', 'Slow', 'Slow Digging', 'Weakness', 'Wither' ], 'All')
         .setTooltip('药水类型')
     );
     this.data.push(new ListValue('状态', 'status', [ 'None', 'All', 'Curse', 'Disarm', 'Root', 'Silence', 'Stun' ], 'All')
@@ -1934,7 +1934,7 @@ function MechanicItem()
 
     this.description = '给予目标物品';
 
-    this.data.push(new ListValue('类型', 'material', getMaterials, 'Arrow')
+    this.data.push(new ListValue('类型', 'material', materialList, 'Arrow')
         .setTooltip('物品类型')
     );
     this.data.push(new IntValue('数量', 'amount', 1)
@@ -1966,7 +1966,7 @@ function MechanicItemProjectile()
     this.description = '抛射一个物品，着陆时变回方块，未着陆时可撞击目标';
 
 
-    this.data.push(new ListValue('物品', 'item', getMaterials, 'Jack O Lantern')
+    this.data.push(new ListValue('物品', 'item', materialList, 'Jack O Lantern')
         .setTooltip('抛射物')
     ),
     this.data.push(new IntValue('物品 Data', 'item-data', 0)
@@ -2197,7 +2197,7 @@ function MechanicPotion()
 
     this.description = '对目标造成药水效果';
 
-    this.data.push(new ListValue('药水', 'potion', getPotionTypes, 'Absorption')
+    this.data.push(new ListValue('药水', 'potion',[ 'Absorption', 'Blindness', 'Confusion', 'Damage Resistance', 'Fast Digging', 'Fire Resistance', 'Glowing', 'Health Boost', 'Hunger', 'Increase Damage', 'Invisibility', 'Jump', 'Levitation', 'Luck', 'Night Vision', 'Poison', 'Regeneration', 'Saturation', 'Slow', 'Slow Digging', 'Speed', 'Unluck', 'Water Breathing', 'Weakness', 'Wither' ], 'Absorption')
         .setTooltip('药水效果')
     );
     this.data.push(new ListValue('粒子', 'ambient', [ 'True', 'False' ], 'True')
@@ -2218,7 +2218,7 @@ function MechanicPotionProjectile()
 
     this.description = '所有目标抛射一瓶无效果药水，着陆时触发子项目，目标为药水命中物品，若未命中，目标为药水所在位置';
 
-    this.data.push(new ListValue('类型', 'type', getPotionTypes, 'Fire Resistance')
+    this.data.push(new ListValue('类型', 'type', [ 'Fire Resistance', 'Instant Damage', 'Instant Heal', 'Invisibility', 'Night Vision', 'Poison', 'Regen', 'Slowness', 'Speed', 'Strength', 'Water', 'Water Breathing', 'Weakness' ], 'Fire Resistance')
         .setTooltip('药水类型 [无实际效果]')
     );
     this.data.push(new ListValue("群组", "group", ["Ally", "Enemy", "Both"], "Enemy")
@@ -2257,7 +2257,7 @@ function MechanicPurge()
 
     this.description = '清除目标相应的正面药水效果与正面状态';
 
-    this.data.push(new ListValue('药水', 'potion', getGoodPotions, 'All')
+    this.data.push(new ListValue('药水', 'potion', [ 'None', 'All', 'Absorption', 'Damage Resistance', 'Fast Digging', 'Fire Resistance', 'Health Boost', 'Increase Damage', 'Invisibility', 'Jump', 'Night Vision', 'Regeneration', 'Saturation', 'Speed', 'Water Breathing' ], 'All')
         .setTooltip('药水效果')
     );
     this.data.push(new ListValue('状态', 'status', [ 'None', 'All', 'Absorb', 'Invincible' ], 'All')
@@ -2774,7 +2774,7 @@ function MechanicWolf()
     
     this.description = '在所有目标位置召唤一只狼，且子项目将以狼为目标';
     
-    this.data.push(new ListValue('项圈颜色', 'color', getDyes(), 'Black')
+    this.data.push(new ListValue('项圈颜色', 'color', dyeList, 'Black')
         .setTooltip('项圈颜色')
     );
     this.data.push(new StringValue('名称', 'name', "{player} 的狼")
@@ -2813,7 +2813,7 @@ function addItemOptions(component) {
     component.data.push(new ListValue('检测材质', 'check-mat', [ 'True', 'False' ], 'True')
         .setTooltip('是否必须是指定物品')
     );
-    component.data.push(new ListValue('材质', 'material', getMaterials, 'Arrow')
+    component.data.push(new ListValue('材质', 'material', materialList, 'Arrow')
         .requireValue('check-mat', [ 'True' ])
         .setTooltip('物品材质')
     );
@@ -2959,7 +2959,7 @@ function addParticleOptions(component) {
         .setTooltip('粒子类型')
     );
     
-    component.data.push(new ListValue('类型', 'material', getMaterials, 'Dirt').requireValue('particle', [ 'Block Crack', 'Icon Crack' ])
+    component.data.push(new ListValue('类型', 'material', materialList, 'Dirt').requireValue('particle', [ 'Block Crack', 'Icon Crack' ])
         .setTooltip('用于Block Crack以及Icon Crack的物品类型')
     );
     component.data.push(new IntValue('Date', 'type', 0).requireValue('particle', [ 'Block Crack', 'Icon Crack' ])
@@ -3098,7 +3098,7 @@ function addEffectOptions(component, optional)
         ], 'BARRIER')
         .setTooltip('粒子类型')
     ));
-    component.data.push(opt(new ListValue('粒子材质', '-particle-material', getMaterials, 'WOOD')
+    component.data.push(opt(new ListValue('粒子材质', '-particle-material', materialList, 'WOOD')
         .requireValue('-particle-type', [ 'BLOCK_CRACK' ])
         .setTooltip('粒子材质')
     ));
