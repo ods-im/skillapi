@@ -33,7 +33,7 @@ function Skill(name)
 		new StringValue('释放信息', 'msg', '&6{player} &2使用了 &6{skill}').setTooltip('释放时向周围发送提示信息 [提示半径在 config.yml 中修改]'),
         new StringValue('组合键', 'combo', '').setTooltip('[付费版] 通过组合键释放技能 [L 左键 R 右键 S 下蹲 LS 左Shift RS 右Shift P 跳跃 Q 丢弃]	[使用空格隔开,若填 "L R LS P" 则可使用 左键＋右键＋左Shift＋跳跃 来释放技能]'),
         new ListValue('指示器', 'indicator', [ '2D', '3D', 'None' ], '2D').setTooltip('[付费版] 用于显示的类型 [适用于悬浮栏]'),
-		new ListValue('图标', 'icon', getMaterials, 'Jack O Lantern').setTooltip('在GUI中显示的技能图标'),
+		new ListValue('图标', 'icon', iconList, 'Jack O Lantern').setTooltip('在GUI中显示的技能图标'),
 		new IntValue('图标 Data', 'icon-data', 0).setTooltip('技能图标的副ID/耐久 [不会请默认]'),
 		new StringListValue('技能 Lore', 'icon-lore', [
 			'&d{name} &7({level}/{max})',
